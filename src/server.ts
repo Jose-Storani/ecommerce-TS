@@ -3,6 +3,7 @@ import cors from "cors";
 import { ConfigServer } from "./config/config";
 import { UserRouter } from "./routes/user.router";
 import { DataBaseConfig } from "./persistence/mongoDB/db.config";
+import { ProductsRouter } from "./routes/products.router";
 
 
 class ServerInit{
@@ -26,7 +27,7 @@ class ServerInit{
   }
 
   routers():Array<express.Router>{
-    return [new UserRouter().router]
+    return [new UserRouter().router, new ProductsRouter().router]
   }
   listen (){
     this.app.listen(this.PORT,()=>{

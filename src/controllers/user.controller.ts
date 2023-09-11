@@ -1,7 +1,14 @@
 import {Response, Request} from "express";
+import { usersDao } from "../dao/usersDao/userManager";
 export class UserController{
-  getUsers(req: Request, res:Response){
-    res.status(200).json({user:"Joseph"});
+  async getUsers(req: Request, res:Response):Promise<void>{
+    try {
+      const response = await usersDao.getAll();
+      res.status(200).json({users:response});
+    } catch (error) {
+      console.log(error)
+    }
+    
   }
 
   getOneUser(req: Request, res:Response){
