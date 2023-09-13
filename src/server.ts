@@ -47,4 +47,5 @@ class ServerInit{
   }
 };
 
-new ServerInit();
+const server = new ServerInit();
+export const app = server.app;
