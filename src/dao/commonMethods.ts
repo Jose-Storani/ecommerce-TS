@@ -1,5 +1,8 @@
 
 import { Model, Document } from 'mongoose';
+import {CustomError} from '../utils/errors/customErrors';
+import { errors } from '../utils/errors/errorsDictionary';
+
 
 export class CommonMethods<T extends Document>{
   protected model:Model<T>
@@ -16,7 +19,9 @@ export class CommonMethods<T extends Document>{
   }
 
   async getById(id:string){
-    return await this.model.find({_id : id});
+      const response = await this.model.find({_id : id});
+    if(!response.length) CustomError.createError(errors.NotFound);
+    return response;
   }
 
   async deleteAll(){
@@ -24,7 +29,9 @@ export class CommonMethods<T extends Document>{
   };
 
   async deleteById(id:string){
-    return await this.model.findOneAndDelete({_id : id});
+    const response = await this.model.findOneAndDelete({_id : id});
+    if(!response) CustomError.createError(errors.NotFound);
+    return response;
   }
 
 }

@@ -4,6 +4,8 @@ import { ConfigServer } from "./config/config";
 import { UserRouter } from "./routes/user.router";
 import { DataBaseConfig } from "./persistence/mongoDB/db.config";
 import { ProductsRouter } from "./routes/products.router";
+import { Request,Response,NextFunction } from "express";
+import { IError } from "./interfaces/Error.interface";
 
 
 class ServerInit{
@@ -22,6 +24,8 @@ class ServerInit{
     DataBaseConfig.dbConnect();
     
     this.app.use("/api",this.routers());
+    this.app.use(this.errorHandler)
+  
     
 
   }
@@ -36,7 +40,11 @@ class ServerInit{
     })
   }
 
- 
+
+  private errorHandler(err: IError, req: Request, res: Response, next: NextFunction) {
+    console.error(err.stack);
+    res.status(err.code as number).json({error:err.message});
+  }
 };
 
 new ServerInit();

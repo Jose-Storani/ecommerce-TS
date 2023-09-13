@@ -10,4 +10,4 @@ stock:number;
 category:string;
 thumbnail:string;
 
-}
+};
