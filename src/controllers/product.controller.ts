@@ -11,5 +11,10 @@ export class ProductController{
     
     const response = await productDao.getById(req.params.id);
     res.status(200).json({product:response});
+  };
+
+  async addProduct(req: Request, res: Response):Promise<void>{
+    const response = await productDao.addProduct(req.body);
+    res.status(200).json({creado:response});
   }
 }

@@ -1,17 +1,5 @@
 import mongoose from "mongoose";
-import { Document } from "mongoose";
-
-export interface IProduct extends Document {
-title:string;
-description:string;
-code:string;
-price:number;
-status:string;
-stock:number;
-category:string;
-thumbnail:string;
-
-}
+import { IProduct } from "../../../interfaces/Product.interface";
 
 export class ProductSchema {
   public productSchema = new mongoose.Schema<IProduct>({

@@ -8,8 +8,8 @@ import { ProductsRouter } from "./routes/products.router";
 
 class ServerInit{
   public app: express.Application = express();
-  private PORT: number = ConfigServer.PORT;
-  private ENV: string | undefined = ConfigServer.ENV;
+  private PORT: number = ConfigServer.PORT || 8000;
+  private ENV: string | undefined = ConfigServer.ENV || "development";
 
   constructor(){
     this.app.use(express.json());
