@@ -10,6 +10,7 @@ export class ProductsRouter extends BaseRouter<ProductController> {
   routes():void{
     this.router.get("/products",this.controller.getAll);
     this.router.get("/products/:id",this.controller.getById);
+    this.router.get("/products/testing",this.controller.testingProduct);
     this.router.post("/products",this.controller.addProduct);
     this.router.put("/products/:id",this.controller.updateProduct)
     this.router.delete("/products",this.controller.deleteAllProducts);

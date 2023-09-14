@@ -6,6 +6,7 @@ import { DataBaseConfig } from "./persistence/mongoDB/db.config";
 import { ProductsRouter } from "./routes/products.router";
 import { Request,Response,NextFunction } from "express";
 import { IError } from "./interfaces/Error.interface";
+import { CartsRouter } from "./routes/carts.router";
 
 
 class ServerInit{
@@ -31,7 +32,7 @@ class ServerInit{
   }
 
   routers():Array<express.Router>{
-    return [new UserRouter().router, new ProductsRouter().router]
+    return [new UserRouter().router, new ProductsRouter().router,new CartsRouter().router]
   }
   listen (){
     this.app.listen(this.PORT,()=>{
