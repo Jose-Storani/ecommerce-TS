@@ -11,7 +11,7 @@ import { IError } from "./interfaces/Error.interface";
 class ServerInit{
   public app: express.Application = express();
   private PORT: number = ConfigServer.PORT || 8000;
-  private ENV: string | undefined = ConfigServer.ENV || "development";
+  private ENV: string | undefined = ConfigServer.ENV;
 
   constructor(){
     this.app.use(express.json());

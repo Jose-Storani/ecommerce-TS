@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha -r ts-node/register tests/**/*.spec.ts",
+    "test": "SET NODE_ENV=test && mocha -r ts-node/register tests/**/*.spec.ts",
     "start": "node dist/server.js",
     "build": "tsc",
     "start:dev": "tsc && concurrently \"tsc -watch\" \"nodemon dist/src/server.js\""
