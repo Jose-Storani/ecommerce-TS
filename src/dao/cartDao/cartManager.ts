@@ -18,45 +18,41 @@ export class CartManager extends CommonMethods<ICart> {
     if (!cartFound) {
       CustomError.createError(errors.NotFound);
     } else {
-      if (cartFound.products.length) {
-        const productIndex = cartFound.products.findIndex(
-          (e) => e.productId.toString() === pid
-        );
+      const productIndex = cartFound.products.findIndex(
+        (e) => e.productId.toString() === pid
+      );
 
-        //si existe el product en el carrito, agrego la cantidad
-        if (productIndex !== -1) {
-          const updatedQuantity = await cartModel.findOneAndUpdate(
-            {
-              _id: cid,
-              "products.productId": pid,
-            },
-            {
-              $inc: { "products.$.quantity": quantity },
-            },
-            { new: true }
-          );
-          return updatedQuantity;
-          //si no existe el producto en el carrito
-        } else {
-          const pushProduct = await cartModel.findOneAndUpdate(
-            { _id: cid },
-            {
-              $push: {
-                products: {
-                  productId: pid,
-                  quantity,
-                },
+      //si existe el product en el carrito, agrego la cantidad
+      if (productIndex !== -1) {
+        const updatedQuantity = await cartModel.findOneAndUpdate(
+          {
+            _id: cid,
+            "products.productId": pid,
+          },
+          {
+            $inc: { "products.$.quantity": quantity },
+          },
+          { new: true }
+        );
+        return updatedQuantity;
+        //si no existe el producto en el carrito
+      } else {
+        const pushProduct = await cartModel.findOneAndUpdate(
+          { _id: cid },
+          {
+            $push: {
+              products: {
+                productId: pid,
+                quantity,
               },
-            }
-          )
-          return pushProduct;
-        }
+            },
+          },
+          { new: true }
+        );
+        return pushProduct;
       }
-      //si el carrito existe,pero no tiene ningun producto agregado
-      else return cartFound;
     }
   }
 }
-
 
 export const cartManager = new CartManager(cartModel);

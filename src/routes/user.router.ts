@@ -7,10 +7,10 @@ constructor(){
 }
 
 routes(): void {
-    this.router.get("/user", this.controller.getUsers);
-    this.router.get("/user/:id", this.controller.getOneUser);
-    this.router.post("/user",this.controller.createUser);
-    this.router.delete("/user", this.controller.deleteAllUsers);
-    this.router.delete("/user/:id", this.controller.deleteUser);
+    this.router.get("/users", this.controller.getUsers);
+    this.router.get("/users/:id", this.controller.getOneUser);
+    this.router.post("/users",this.controller.createUser);
+    this.router.delete("/users", this.controller.deleteAllUsers);
+    this.router.delete("/users/:id", this.controller.deleteUser);
 }
 }

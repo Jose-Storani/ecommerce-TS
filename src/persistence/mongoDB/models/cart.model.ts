@@ -32,5 +32,8 @@ class CartSchema{
 }
 
 const cartSchema = new CartSchema();
-cartSchema.preLoadProducts();
+cartSchema.cartSchema.pre("find",function(next){
+  this.populate("products.productId");
+  next()
+})
 export const cartModel = cartSchema.getModel();
