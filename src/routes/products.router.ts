@@ -8,7 +8,7 @@ export class ProductsRouter extends BaseRouter<ProductController> {
   }
 
   routes():void{
-    this.router.get("/products",this.controller.getAll);
+    this.router.get("/products",this.controller.getAllProducts);
     this.router.get("/products/:id",this.controller.getById);
     this.router.post("/products",this.controller.addProduct);
     this.router.put("/products/:id",this.controller.updateProduct)

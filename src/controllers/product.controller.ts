@@ -2,14 +2,22 @@ import { Response, Request, NextFunction } from "express";
 import { productDao } from "../dao/productsDao/productsManager";
 
 export class ProductController {
-  async getAll(req: Request, res: Response,next:NextFunction): Promise<void> {
+ 
+  async getAllProducts(req: Request, res: Response,next:NextFunction): Promise<void> {
     try {
       const response = await productDao.getAll();
       res.status(200).json({ products: response });
     } catch (error) {
       next(error);
     }
+  };
+
+  async getProductos(req: Request, res: Response, next: NextFunction): Promise<void>{
+    const response = await productDao.getAll();
+    res.status(200).json({ products: response });
   }
+
+ 
 
   async getById(
     req: Request,
@@ -68,6 +76,8 @@ export class ProductController {
     } catch (error) {
       next(error);
     }
+
+
     
   }
 }

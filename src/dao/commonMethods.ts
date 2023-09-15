@@ -21,7 +21,7 @@ export class CommonMethods<T extends Document>{
   async getById(id:string){
       const response = await this.model.find({_id : id});
     if(!response.length) CustomError.createError(errors.NotFound);
-    return response;
+    return response[0];
   }
 
   async deleteAll(){
