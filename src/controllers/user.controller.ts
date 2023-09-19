@@ -16,9 +16,9 @@ export class UserController{
     res.status(200).json({user:"Pepito",id});
   }
 
-  createUser(req: Request, res:Response){
-    const {name,email,address,password} = req.body;
-    res.status(200).json({"usuario_creado":{name,email,address,password}})
+  async createUser(req: Request, res:Response){
+    const response = await usersDao.createUser(req.body)
+    res.status(200).json({user:response});
   }
 
   deleteUser(req: Request, res:Response){

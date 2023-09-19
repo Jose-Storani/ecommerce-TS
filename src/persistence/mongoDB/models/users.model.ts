@@ -1,46 +1,46 @@
 import mongoose from "mongoose";
-
-class UserSchema {
-  public userSchema: mongoose.Schema = new mongoose.Schema({
-    title:{
-      type: String,
-      required: true,
-      
-  },
-  description:{
-      type:String,
-      required: true
-  },
-  code:{
-      type:String,
-      required: true,
-      unique: true
-  }
-  ,
-  price:{
-      type: Number,
-      required:true
-  },
-  status:{
-      type: String,
-      required: false
-  }
-  ,
-  stock:{
-      type: Number,
-      required:true
-  },
-  category:{
-      type: String,
-      required:true
-  },
-  thumbnail:{
-      type: String,
-      required: false
-  }})
+import { IUser } from "../../../interfaces/User.interface";
+export class UserSchema {
+  public userSchema: mongoose.Schema = new mongoose.Schema<IUser>({
+    first_name: {
+        type: String,
+        required: true,
+      },
+      last_name: {
+        type: String,
+        required: true,
+      },
+      email: {
+        type: String,
+        required: true,
+        unique: true,
+      },
+      age: {
+        type: String,
+        default:"0"
+      },
+      password: {
+        type: String,
+        required: true,
+      },
+      associatedCart: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Carts',
+      },
+      rol: {
+        type: String,
+        default: 'Usuario',
+      },
+      failedLoginAttempts: {
+        type: Number,
+        default: 0,
+      },
+      lastLogin: Date,
+    
+  });
 
   getModel(){
-    return mongoose.model("Users",this.userSchema);
+    return mongoose.model<IUser>("Users",this.userSchema);
   }
 };
 

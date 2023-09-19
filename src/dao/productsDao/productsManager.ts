@@ -42,6 +42,7 @@ class ProductManager extends CommonMethods<IProduct> {
     if(!response)CustomError.createError(errors.BadRequest);
     return response
   }
+
 };
 
 export const productDao = new ProductManager(productModel);

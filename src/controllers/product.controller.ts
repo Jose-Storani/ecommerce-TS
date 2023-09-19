@@ -5,19 +5,12 @@ export class ProductController {
  
   async getAllProducts(req: Request, res: Response,next:NextFunction): Promise<void> {
     try {
-      const response = await productDao.getAll();
+      const response = productDao.getAll();
       res.status(200).json({ products: response });
     } catch (error) {
       next(error);
     }
   };
-
-  async getProductos(req: Request, res: Response, next: NextFunction): Promise<void>{
-    const response = await productDao.getAll();
-    res.status(200).json({ products: response });
-  }
-
- 
 
   async getById(
     req: Request,

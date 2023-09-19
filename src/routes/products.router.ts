@@ -11,7 +11,10 @@ export class ProductsRouter extends BaseRouter<ProductController> {
     this.router.get("/products",this.controller.getAllProducts);
     this.router.get("/products/:id",this.controller.getById);
     this.router.post("/products",this.controller.addProduct);
+
+    //recibe por body el campo y el valor a modificar
     this.router.put("/products/:id",this.controller.updateProduct)
+    //---//
     this.router.delete("/products",this.controller.deleteAllProducts);
     this.router.delete("/products/:id",this.controller.deleteProduct);
   }

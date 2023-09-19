@@ -1,8 +1,9 @@
 import mongoose from "mongoose";
 import { IProduct } from "../../../interfaces/Product.interface";
 
+
 export class ProductSchema {
-  public productSchema = new mongoose.Schema<IProduct>({
+  public productSchema:mongoose.Schema = new mongoose.Schema<IProduct>({
     title:{
       type: String,
       required: true,
@@ -46,4 +47,5 @@ export class ProductSchema {
 };
 
 const productSchema = new ProductSchema();
+
 export const productModel = productSchema.getModel();
